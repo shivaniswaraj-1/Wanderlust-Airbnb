@@ -1,0 +1,28 @@
+<% if(success && success.length){ %>
+    <div id="flash-success" class="alert alert-success alert-dismissible fade show col-6 offset-3" role="alert">
+      <%= success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+  
+  <% if(error && error.length){ %>
+    <div id="flash-error" class="alert alert-danger alert-dismissible fade show col-6 offset-3" role="alert">
+      <%= error %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
+  
+  <script>
+    // Auto-dismiss flash messages after 3 seconds, then remove from DOM
+    setTimeout(() => {
+      const alerts = document.querySelectorAll('.alert');
+      alerts.forEach(alert => {
+        alert.classList.remove('show'); // start fade out
+        alert.classList.add('fade');
+        setTimeout(() => {
+          alert.remove(); // remove from DOM completely after fade out
+        }, 300); // Bootstrap fade duration
+      });
+    }, 3000); // 3 seconds visible
+  </script>
+  
